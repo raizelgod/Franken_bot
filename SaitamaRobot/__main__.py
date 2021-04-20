@@ -11,7 +11,7 @@ from SaitamaRobot import (ALLOW_EXCL, CERT_PATH, DONATION_LINK, LOGGER,
 # NOTE: Module order is not guaranteed, specify that in the config file!
 from SaitamaRobot.modules import ALL_MODULES
 from SaitamaRobot.modules.helper_funcs.chat_status import is_user_admin
-from SaitamaRobot.modules.helper_funcs.misc import paginate_modules
+from SaitamaRobot.modules.helper_funcs.misc import paginate_modules 
 from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode,
                       Update)
 from telegram.error import (BadRequest, ChatMigrated, NetworkError,
@@ -51,21 +51,21 @@ def get_readable_time(seconds: int) -> str:
 
 
 PM_START_TEXT = """
-Hello {},My Name is Frankenstein
-I AM A SERVANT OF LORD RAIZEL FROM NOBLESSE 
+Hello {},My Name is Mahito
+I AM A CURSED SPIRIT, FROM JUJUTSU KAISEN 
 I will help you manage your group.
 TO KNOW MY COMMANDS CLICK /help.
 """
 
 HELP_STRINGS = """
 Hey there! My name is *{}*.
-I'm a servant of lord raizel , i am here to help you manage any work or needed changes in your group. you may use me and my powers how you see it it .
+I'm the cursed spirit known as Mahito , i am here to help you manage any work or needed changes in your group. you may use me and my powers how you see it it .
 
 *Main* commands available:
- • /help: PM's you this message.
- • /help <module name>: PM's you info about that module.
- • /donate: information on how to donate!
- • /settings:
+ • !help: PM's you this message.
+ • !help <module name>: PM's you info about that module.
+ • !donate: information on how to donate!
+ • !settings:
    • in PM: will send you your settings for all supported modules.
    • in a group: will redirect you to pm, with all that chat's settings.
 
@@ -76,7 +76,7 @@ And the following:
     dispatcher.bot.first_name, ""
     if not ALLOW_EXCL else "/nAll commands can either be used with + or !.\n")
 
-SAITAMA_IMG = "https://telegra.ph/file/9ca641e3866d2d22c557a.jpg"
+Mahito_IMG = "https://wallpapercave.com/wp/wp8604248.jpg"
 
 DONATE_STRING = """donate to the original writer of the Base code, Paul
 There are two ways of supporting him; [PayPal](paypal.me/PaulSonOfLars), or [Monzo](monzo.me/paulnionvestergaardlarsen)."""
@@ -177,7 +177,7 @@ def start(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup(                   
                           [[
                               InlineKeyboardButton(
-                              text="🔥Add frenkenstein to your group🔥",
+                              text="🔥Add Mahito to your group🔥",
                               url="t.me/{}?startgroup=true".format(
                                   context.bot.username))
                           ], 
@@ -191,7 +191,7 @@ def start(update: Update, context: CallbackContext):
                           ]])) 
     else:
         update.effective_message.reply_text(
-            "I'm am awake o mine master!\n<b>Up since:</b> <code>{}</code>".format(uptime),
+            "let the festival of harvest commence!\n<b>Up since:</b> <code>{}</code>".format(uptime),
             parse_mode=ParseMode.HTML)
 
 
@@ -238,7 +238,7 @@ def help_button(update, context):
     try:
         if mod_match:
             module = mod_match.group(1)
-            text = ("Here is the help for the *{}* module:\n".format(
+            text = (" if you wish fo it Here is the help for the *{}* module:\n".format(
                 HELPABLE[module].__mod_name__) + HELPABLE[module].__help__)
             query.message.edit_text(
                 text=text,
@@ -289,7 +289,7 @@ def get_help(update: Update, context: CallbackContext):
     if chat.type != chat.PRIVATE:
 
         update.effective_message.reply_text(
-            "Contact me in PM to get the list of possible commands.",
+            "here i permit you to Contact me in PM to get the list of possible commands.",
             reply_markup=InlineKeyboardMarkup([[
                 InlineKeyboardButton(
                     text="Help",
@@ -325,7 +325,7 @@ def send_settings(chat_id, user_id, user=False):
         else:
             dispatcher.bot.send_message(
                 user_id,
-                "Seems like there aren't any user specific settings available :'(",
+                "Seems like there aren't any user specific settings available r you dumb or what:'(",
                 parse_mode=ParseMode.MARKDOWN)
 
     else:
@@ -341,7 +341,7 @@ def send_settings(chat_id, user_id, user=False):
             dispatcher.bot.send_message(
                 user_id,
                 "Seems like there aren't any chat settings available :'(\nSend this "
-                "in a group chat you're admin in to find its current settings!",
+                "in a group chat you're admin in to find its current settings but i am sure you can just drop dead and give me total control !",
                 parse_mode=ParseMode.MARKDOWN)
 
 
@@ -387,8 +387,8 @@ def settings_button(update: Update, context: CallbackContext):
             next_page = int(next_match.group(2))
             chat = bot.get_chat(chat_id)
             query.message.reply_text(
-                "Hi there! There are quite a few settings for {} - go ahead and pick what "
-                "you're interested in.".format(chat.title),
+                "Hi there! There are quite a few settings for this specific command {} - go ahead and pick what "
+                " and if you're interested in.".format(chat.title),
                 reply_markup=InlineKeyboardMarkup(
                     paginate_modules(
                         next_page + 1, CHAT_SETTINGS, "stngs", chat=chat_id)))
@@ -397,7 +397,7 @@ def settings_button(update: Update, context: CallbackContext):
             chat_id = back_match.group(1)
             chat = bot.get_chat(chat_id)
             query.message.reply_text(
-                text="Hi there! There are quite a few settings for {} - go ahead and pick what "
+                text="Hi there! There are quite a few settings for {} - go ahead and pick whatever you want but in exchange give me your soul "
                 "you're interested in.".format(escape_markdown(chat.title)),
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(
