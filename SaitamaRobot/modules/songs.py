@@ -5,7 +5,7 @@ import aiohttp
 import youtube_dl
 
 from pyrogram import filters
-from SaitamaRobot import pyrogram
+from SaitamaRobot import pyrogram as pgram
 from youtube_search import YoutubeSearch
 from SaitamaRobot.pyrogramee.errors import capture_err
 
